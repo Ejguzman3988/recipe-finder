@@ -7,3 +7,8 @@ const content = document.querySelector("#content");
 function urlGenerator(endPoint = "") {
   return RECIPE_URL + "/" + endPoint + "?apiKey=" + API_KEY;
 }
+
+function clearPage() {
+  highlight.innerHTML = "";
+  content.innerHTML = "";
+}

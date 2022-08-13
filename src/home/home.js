@@ -45,12 +45,25 @@ function getHomeContent() {
 
 function gatherContentData(recipeObjs) {
   recipeObjs.forEach((recipeObj) => createARecipeCard(recipeObj));
+
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach((card) => {
+    const foundRecipe = recipeObjs.find(
+      (recipeObj) => recipeObj.id === Number(card.dataset.id)
+    );
+    console.log(foundRecipe);
+    card.addEventListener("click", (e) => {
+      makeRecipePage(foundRecipe);
+    });
+  });
 }
 
 function createARecipeCard(recipeObj) {
   const card = document.createElement("div");
   const title = document.createElement("div");
 
+  card.dataset.id = recipeObj.id;
   title.textContent = recipeObj.title;
   card.style.backgroundImage = `url(${recipeObj.image})`;
   card.className = "card";

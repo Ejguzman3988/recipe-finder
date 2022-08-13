@@ -5,21 +5,23 @@ makeHomePage();
 
 homeTag.addEventListener("click", (e) => {
   e.preventDefault();
-  highlight.innerHTML = "";
-  content.innerHTML = "";
+  clearPage();
   makeHomePage();
   // FUNCTION RENDER HOME PAGE
 });
 
 randomRecipeTag.addEventListener("click", (e) => {
   e.preventDefault();
-  highlight.innerHTML = "";
-  content.innerHTML = "";
+  clearPage();
   // FUNCTION RENDER RANDOM RECIPE PAGE
+  getARandomRecipe();
 });
 
 function getARandomRecipe() {
   fetch(urlGenerator("random"))
     .then((r) => r.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      const recipeObj = data.recipes[0];
+      makeRecipePage(recipeObj);
+    });
 }
